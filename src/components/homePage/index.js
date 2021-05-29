@@ -4,7 +4,7 @@ import axios from 'axios';
 import './index.css';
 
 function HomePage(){
-const [movies, setMovies] = useState(false);
+const [movies, setMovies] = useState([]);
     useEffect(()=> {
         fetchApi();
     },[]);
@@ -20,7 +20,7 @@ const [movies, setMovies] = useState(false);
                 setMovies(data);
             })
     }
-
+    const arr = [1,2,3,4,5]
     return(
         <div>
             <h1>This is home page</h1>
@@ -28,6 +28,13 @@ const [movies, setMovies] = useState(false);
                 <Link to="/detail">go to detail</Link>
             </button>
             <button onClick={checkData}>check here</button>
+            <div>
+                {movies.map(function(item,i){
+                    return <div key={i}>
+                        <Link to={`/detail/${item.id}`}>{item.title}</Link>
+                    </div>
+                })}
+            </div>
         </div>
     )
 }
