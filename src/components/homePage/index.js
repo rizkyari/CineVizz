@@ -1,10 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect,lazy, Suspense} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import Header from '../header';
+// import ListItem from '../listContent';
 import './index.css';
+import Loading from '../loading';
+
 
 function HomePage(){
 const [movies, setMovies] = useState([]);
+const ListItem = lazy(() => import('../listContent'));
     useEffect(()=> {
         fetchApi();
     },[]);
@@ -23,17 +28,11 @@ const [movies, setMovies] = useState([]);
     
     return(
         <div>
-            <h1>This is home page</h1>
-            <button>
-                <Link to="/detail">go to detail</Link>
-            </button>
-            <button onClick={checkData}>check here</button>
-            <div>
-                {movies.map(function(item,i){
-                    return <div key={i}>
-                        <Link to={`/detail/${item.id}`}>{item.title}</Link>
-                    </div>
-                })}
+            <Header/>
+            <div className="body-content">
+                <Suspense fallback={<div className="body-loading"><Loading/></div>}>
+                    <ListItem/>
+                </Suspense>
             </div>
         </div>
     )
