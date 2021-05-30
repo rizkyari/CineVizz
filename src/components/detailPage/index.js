@@ -11,17 +11,16 @@ function DetailPage({match}){
     const[detail, setDetail] = useState(null);
     
     useEffect(() => {
-        fetchDetailApi();
-    },[])
-
-    const fetchDetailApi = () => {
-        axios.get(`https://5f50ca542b5a260016e8bfb0.mockapi.io/api/v1/movies/${match.params.id}`)
+      const detailId = match.params.id
+      const fetchDetailApi = () => {
+        axios.get(`https://5f50ca542b5a260016e8bfb0.mockapi.io/api/v1/movies/${detailId}`)
             .then(res => {
                 const detailData = res.data;
                 setDetail(detailData);
             })
     }
-
+        fetchDetailApi();
+    },[])
 
     return (
       <div>
@@ -36,7 +35,7 @@ function DetailPage({match}){
                    <Link to="/" className="link">Back To Home Page</Link>
                 </div>
                 <LazyLoad height={200} once>
-                    <img src={detail.image} className="image-content"/>
+                    <img src={detail.image} className="image-content" alt="thumbnail movie.jpg"/>
                 </LazyLoad>
             </div>
             <div className="description split">

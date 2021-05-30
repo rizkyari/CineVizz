@@ -42,11 +42,11 @@ function ListItem(){
             {movies.map(function(item,i){
                     return <div key={i} className="wrapper">
                         <LazyLoad height={200}>
-                            <div class="grid-item">
-                                <div class="card"><img class="card-img" src={item.image} alt="movie thumbnail"/>
-                                    <div class="card-content">
-                                    <h1 class="card-header">{item.title}</h1>
-                                    <Link to={`/detail/${item.id}`} className="link"><button class="card-btn">See more</button></Link>
+                            <div className="grid-item">
+                                <div className="card"><img className="card-img" src={item.image} alt="movie thumbnail"/>
+                                    <div className="card-content">
+                                    <h1 className="card-header">{item.title}</h1>
+                                    <Link to={`/detail/${item.id}`} className="link"><button className="card-btn">See more</button></Link>
                                     </div>
                                 </div>
                             </div>

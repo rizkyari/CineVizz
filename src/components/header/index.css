@@ -82,6 +82,10 @@ header .search .fa-search{
     padding-right: 10px;
 }
 
+.fa-search{
+    cursor: pointer;
+}
+
 @media (max-width: 991px){
     header{
         padding: 10px 20px;
@@ -94,3 +98,22 @@ header .search .fa-search{
         width: 100%;
     }
 }
+
+.autoContainer {
+    position: absolute;
+    border-width: 0px 1px 1px 1px;
+    border-style: solid;
+    border-color: goldenrod;
+    background-color: whitesmoke;
+    top: 52px;
+    width: 300px;
+  }
+
+  .option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 500px;
+    padding: 5px;
+  }
+
