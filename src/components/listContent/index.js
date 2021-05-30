@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import LazyLoad from 'react-lazyload';
 import Loading from '../loading';
+import FilterBox from '../filterBox';
 import './index.css';
 
 function ListItem(){
@@ -19,6 +20,10 @@ function ListItem(){
             })
     }
 
+    const handleMoviesData = (filteredValue) =>{
+        setMovies(filteredValue);
+    }
+
     return(
         <>
         {movies === null ? (
@@ -26,7 +31,14 @@ function ListItem(){
                 <Loading/>
             </div>
         ) : (
-            <div className="body-content">
+            <div>
+                <FilterBox moviesData={movies} change={handleMoviesData}/>
+                { movies.length < 1 ? (
+                    <div>
+                        <h1>There's no movies available on that date</h1>
+                    </div>
+                ) : (
+                    <div className="body-content">
             {movies.map(function(item,i){
                     return <div key={i} className="wrapper">
                         <LazyLoad height={200}>
@@ -41,6 +53,8 @@ function ListItem(){
                         </LazyLoad>
                     </div>
                 })}
+            </div>
+                )}
             </div>
         )}
         </>

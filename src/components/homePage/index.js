@@ -2,7 +2,6 @@ import React, {useState, useEffect,lazy, Suspense} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Header from '../header';
-// import ListItem from '../listContent';
 import './index.css';
 import Loading from '../loading';
 
@@ -13,10 +12,6 @@ const ListItem = lazy(() => import('../listContent'));
     useEffect(()=> {
         fetchApi();
     },[]);
-
-    const checkData = () => {
-        console.log(movies);
-    }
 
     const fetchApi = () => {
         axios.get(`https://5f50ca542b5a260016e8bfb0.mockapi.io/api/v1/movies`)
