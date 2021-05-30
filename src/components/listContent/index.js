@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import LazyLoad from 'react-lazyload';
 import Loading from '../loading';
+import FilterBox from '../filterBox';
 import './index.css';
 
 function ListItem(){
@@ -19,6 +20,10 @@ function ListItem(){
             })
     }
 
+    const handleMoviesData = (filteredValue) =>{
+        setMovies(filteredValue);
+    }
+
     return(
         <>
         {movies === null ? (
@@ -26,21 +31,30 @@ function ListItem(){
                 <Loading/>
             </div>
         ) : (
-            <div className="body-content">
+            <div>
+                <FilterBox moviesData={movies} change={handleMoviesData}/>
+                { movies.length < 1 ? (
+                    <div>
+                        <h1>There's no movies available on that date</h1>
+                    </div>
+                ) : (
+                    <div className="body-content">
             {movies.map(function(item,i){
                     return <div key={i} className="wrapper">
                         <LazyLoad height={200}>
-                            <div class="grid-item">
-                                <div class="card"><img class="card-img" src={item.image} alt="movie thumbnail"/>
-                                    <div class="card-content">
-                                    <h1 class="card-header">{item.title}</h1>
-                                    <Link to={`/detail/${item.id}`} className="link"><button class="card-btn">See more</button></Link>
+                            <div className="grid-item">
+                                <div className="card"><img className="card-img" src={item.image} alt="movie thumbnail"/>
+                                    <div className="card-content">
+                                    <h1 className="card-header">{item.title}</h1>
+                                    <Link to={`/detail/${item.id}`} className="link"><button className="card-btn">See more</button></Link>
                                     </div>
                                 </div>
                             </div>
                         </LazyLoad>
                     </div>
                 })}
+            </div>
+                )}
             </div>
         )}
         </>
